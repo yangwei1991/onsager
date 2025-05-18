@@ -1,0 +1,11 @@
+Conformer search:
+
+
+1. Construct the [M(TFSI)]+. Make sure M is the 1st atom and the N atom of TFSI is the second.
+2. Optimize [M(TFSI)]-. Save the structure in Z-matrix and then convert it into cartesian coordination to place M at the origin (0,0,0) and N atom along the Z axis (0,0,z) 
+3. Copy the cartesian of [M(TFSI)]- into MgTFSI_prep.sh. Append two ghost atoms to the cartesian section, positioning them at (x,0,z) and (0,y,z). Make sure that two ghost atoms and the N atom of TFSI has the same position at -z axis
+4. Execute MgTFSI_prep.sh to generate all conformers
+
+
+
+

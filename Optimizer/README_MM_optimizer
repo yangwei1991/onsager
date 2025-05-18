@@ -1,0 +1,31 @@
+Parametrization:
+
+
+Before running MM_optimizer.py, user should prepare following files or parameters
+
+1. Convert format of all conformers into pdb and save them into folders Conformer3- Conformer20
+2. Use antechamber to generate mol2 file and frcmod file for TFSI. Copy mol2 file and frcmod file into folders Conformer3- Conformer20
+3. Execute tleap_formation.sh to get prmtop files and inpcrd files 
+4. Execute MM_optimizer.py for parametrization
+
+this calculate output:
+
+    # Calculate the difference between MM and QM energies
+    diff = sum((mm - qm) ** 2 for mm, qm in zip(relative_mm_energies, qm_energies))
+    print(f"Current params: {params}, Difference: {diff}")
+
+
+    # Calculate the mean absolute error between MM and QM energies
+    MAE = sum(np.abs(mm - qm) for mm, qm in zip(relative_mm_energies, qm_energies)) / num_terms
+    print(f"MAE: {MAE}")
+
+    # Save the optimized parameters
+    optimized_params = result.x
+    with open('optimized_params.json', 'w') as f:
+        json.dump(optimized_params.tolist(), f)
+
+
+
+
+
+
