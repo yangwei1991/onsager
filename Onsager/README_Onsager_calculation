@@ -1,0 +1,40 @@
+Calculating Onsager coefficients:
+
+  1) Calculate .dat files using data_files/Vector.py; .dat files save center of geometry positions for all cations and anions
+when run Vector.py, user need to select the metal (1.MG 2.CA), time length (0-250 ns) for analysis, and concentration (0.05 M-1 M) 
+  
+  2) Use onsager_linearfitwindow.py to calculate conductivity (output in mS cm^-1)
+
+
+onsager_linearfitwindow.py usage example:
+
+if __name__ == "__main__":
+    sigma, data, dt_max_used = get_onsager_modified(ddir='data_files', n1=4, n2=8, dt_max_init=3, dt_time=50., 
+                                                    prefix1='CA', prefix2='TFS', conc='0.05M', z1=2., z2=-1., 
+                                                    cell=[5.2507]*3, T=300., r_min=0.99, r_max=0.999)
+
+
+
+
+This calculates conductivity, dt_max, e^2 *L++, e^2 *L--, and e^2 *L+- values and correlation coefficients
+User should extract the frame from NVT production step to get an accurate cell length
+
+
+
+Arguments:
+    ddir (str): directory with .dat files
+    n1 (int): number of cations
+    n2 (int): number of anions
+    dt_max_init (int): initial maximum delta t to calculate (in saved timesteps)
+    dt_time (float): time in ps to which the saved timestep (delta t interval) corresponds (default is 50 ps)
+    prefix1 (str): cation name for .dat files
+    prefix2 (str): anion name for .dat files
+    conc (str): concentration indicator for .dat files
+    z1 (float): charge of cation
+    z2 (float): charge of anion (including the negative sign, e.g., z2 = -1)
+    cell (list of float): unit cell lengths in nm
+    T (float): temperature in K
+    r_min (float): minimum acceptable correlation coefficient
+    r_max (float): maximum acceptable correlation coefficient
+
+
